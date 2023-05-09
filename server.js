@@ -13,10 +13,10 @@ const data = {
 app.listen(port, () => {
     console.log(`Listening on port ${port}.`);
     process.stdin.on('readable', () => {
-        const input = process.stdin.read();
+        const input = process.stdin.read();     // Read User Input From Command Line
         if (input !== null) {
             console.log(checkName(input.toString()));
-            process.stdin.resume();
+            process.stdin.resume();     // Flush Input Stream
         }
     });
 });
@@ -42,7 +42,7 @@ app.get('/:name', (req, res) => {
 
     const name = req.params.name;
 
-    data.message = `My name is ${checkName(name)}`;
+    data.message = `My name is ${checkName(name)}`;     // Update Message
 
     res.send(data);
 
@@ -52,8 +52,8 @@ app.get('/:name', (req, res) => {
 });
 
 function checkName(message) {
-    if (message.toLowerCase().includes('stanley') ){
-        message = message.replace(/stanley/gi, 'Jason');
+    if (message.toLowerCase().includes('stanley') ){    // Check If Message Contains "Stanley"
+        message = message.replace(/stanley/gi, 'Jason');    // Replace All Instances Of "Stanley" With "Jason"
     }
     return message;
 }
