@@ -15,7 +15,7 @@ app.listen(port, () => {
     process.stdin.on('readable', () => {
         const input = process.stdin.read();
         if (input !== null) {
-            const newName = input.toString().replace('stanley', 'jason');
+            const newName = input.toString().replace(/stanley/i, 'Jason');
             console.log(`${newName}`);
             process.stdin.resume();
         }
