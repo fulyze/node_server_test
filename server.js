@@ -13,7 +13,7 @@ app.listen(port, () => {
 });
 
 
-var count = 0;
+var fetchCount = 0;
 app.get('/', (req, res) => {
     console.log('|-----------------------------|');
     console.log('| API Fetch Request Received. |');
@@ -22,12 +22,12 @@ app.get('/', (req, res) => {
 
     res.send(data);
 
-    console.log(`Message:       ${data.message}`);
-    count++;
-    console.log(`Request Count: ${count}`);
+    console.log(`Message:   ${data.message}`)
+    console.log(`Request Count: ${++fetchCount}`);
     console.log('\n');
 });
 
+var changeCount = 0;
 app.get('/:name', (req, res) => {
     console.log('********************************');
     console.log('* API Change Request Received. *');
@@ -36,6 +36,9 @@ app.get('/:name', (req, res) => {
     const name = req.params.name;
     data.message = `My name is ${name}.`;
     res.send(data);
-    console.log(`Message:       ${data.message}`);
+    console.log(`Message:   ${data.message}`);
+    console.log(`Request Count: ${++changeCount}`);
+
+
     console.log('\n');
 });
