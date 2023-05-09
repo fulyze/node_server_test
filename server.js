@@ -13,12 +13,12 @@ const data = {
 app.listen(port, () => {
     console.log(`Listening on port ${port}.`);
     process.stdin.on('readable', () => {
-      const input = process.stdin.read();
-      if (input !== null) {
-        const newName = input.toString().replace('stanley', 'jason');
-        console.log(`${newName}`);
-        process.stdin.resume();
-      }
+        const input = process.stdin.read();
+        if (input !== null) {
+            const newName = input.toString().replace('stanley', 'jason');
+            console.log(`${newName}`);
+            process.stdin.resume();
+        }
     });
 });
 
