@@ -15,8 +15,7 @@ app.listen(port, () => {
     process.stdin.on('readable', () => {
         const input = process.stdin.read();
         if (input !== null) {
-            const newName = input.toString().replace(/stanley/i, 'Jason');
-            console.log(`${newName}`);
+            console.log(checkName(input.toString()));
             process.stdin.resume();
         }
     });
@@ -27,7 +26,6 @@ app.get('/', (req, res) => {
     console.log('|-----------------------------|');
     console.log('| API Fetch Request Received. |');
     console.log('|-----------------------------|');
-
 
     res.send(data);
 
@@ -43,11 +41,19 @@ app.get('/:name', (req, res) => {
     console.log('********************************');
 
     const name = req.params.name;
-    data.message = `My name is ${name}.`;
+
+    data.message = `My name is ${checkName(name)}`;
+
     res.send(data);
-    console.log(`Message:   ${data.message}`);
+
+    console.log(data.message);
     console.log(`Request Count: ${++changeCount}`);
-
-
     console.log('\n');
 });
+
+function checkName(message) {
+    if (message.toLowerCase().includes('stanley') ){
+        message = message.replace(/stanley/gi, 'Jason');
+    }
+    return message;
+}
