@@ -4,14 +4,23 @@ const app = express();
 
 const port = 8080;
 
+app.use(express.json());
+
 const data = {
     "message" : 'My name is Jason.'
 };
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}.`);
+    process.stdin.on('readable', () => {
+      const input = process.stdin.read();
+      if (input !== null) {
+        const newName = input.toString().replace('stanley', 'jason');
+        console.log(`${newName}`);
+        process.stdin.resume();
+      }
+    });
 });
-
 
 var fetchCount = 0;
 app.get('/', (req, res) => {
